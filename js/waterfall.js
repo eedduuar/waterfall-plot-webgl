@@ -1,9 +1,10 @@
 class Waterfall {
-    constructor() {
+    constructor(id,angle) {
+
         this.config = {
-            n_lines         :   50,
+            n_lines         :   70,
             new_line_freq_hz:   15,
-            speed           :    3,
+            speed           :    10,
 
             fft_size        : 512,
             min_freq_hz     :    0,
@@ -14,13 +15,14 @@ class Waterfall {
             render_line     : true,
             line_use_uniform_shader: true,
             line_color      : [1, 1, 1],
-            line_width      : 1.5,
+            line_width      : 6.5,
 
             render_stripe   : true,
             stripe_use_uniform_shader: true,
-            stripe_color    : [0, 0, 0],
+            stripe_color    : [4, 5, 6],
 
-            camera_angle_y  : 0
+            camera_angle_y  : angle,
+            canvas : id
         };
 
         this.parameters = {
@@ -148,7 +150,7 @@ class Waterfall {
     }
 
     init_webgl() {
-        this.canvas = document.querySelector('canvas');
+        this.canvas = document.getElementById(this.config.canvas);
 
         try {
             this.gl = this.canvas.getContext('webgl');
